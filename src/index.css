@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  font-size: 28px;
+  color: dimgray;
+}
+
+.gameText {
+  font-size: 18px;
+  color: #0a07bc;
+  margin: 10px;
+}
+
+.infoText {
+  font-size: 12px;
+}
+
