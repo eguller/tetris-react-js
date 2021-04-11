@@ -1,7 +1,7 @@
 import {Tetromino, TetrominoStates} from "./Tetromino";
 import {randomPiece} from "./Piece";
 
-const MAX_ROW_CLEAR_PER_LEVEL = 2;
+const MAX_ROW_CLEAR_PER_LEVEL = 10;
 
 const createState = (height, width) => {
     let _height = height;
