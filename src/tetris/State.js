@@ -54,8 +54,7 @@ const createState = (height, width) => {
         _level = 1;
         _score = 0;
         matrix = initMatrix(_height, _width);
-        _currentPiece = randomPiece();
-        _nextPiece = randomPiece();
+        sendNextPiece();
         _visibleMatrix = createVisibleMatrix(matrix);
     };
 
@@ -68,8 +67,12 @@ const createState = (height, width) => {
     }
 
     const sendNextPiece = () => {
+        if(_nextPiece == null){
+            _nextPiece = randomPiece();
+        }
         _currentPiece = _nextPiece;
         _nextPiece = randomPiece();
+        _currentPiece  = _currentPiece.moveInitCenter(width);
     }
 
     const isFilled = (coordinate) => {
@@ -125,7 +128,7 @@ const createState = (height, width) => {
     };
 
     const overlaps = (piece) => {
-        const overlap = piece.matrixCoordinates().some( coordinate => {
+        const overlap = piece.matrixCoordinates().some(coordinate => {
             return matrix[coordinate.y][coordinate.x].isFilled()
         });
 

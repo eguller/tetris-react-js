@@ -26,7 +26,7 @@ const createTetris = ({height, width} = {height: 20, width:10}) => {
     };
 
     const calculateSpeedForCurrentLevel = (level) => {
-        return 900 * (Math.pow(0.9, level - 1));
+        return Math.floor(900 * (Math.pow(0.9, level - 1)));
     };
 
 

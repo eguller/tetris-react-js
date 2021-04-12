@@ -41,6 +41,13 @@ const Piece = ({x = 0, y = 0, color = randomColor(), state}) => {
         return Piece(x, y, _color, _state);
     };
 
+    const moveInitCenter = (matrixWidth) => {
+        const x = Math.floor((matrixWidth - width) / 2);
+        const upMostPoint = Math.min(...matrixCoordinates().map(coordinate => coordinate.y));
+        const y = 0 - upMostPoint;
+        return Piece({x: x, y: y, color: _color, state: _state})
+    }
+
     const moveLeft = () => {
         let newX = _x - 1;
         let newY = _y;
@@ -70,7 +77,14 @@ const Piece = ({x = 0, y = 0, color = randomColor(), state}) => {
         for(let i = 0; i < height; i ++){
             for(let j = 0; j < width; j++){
                 if(_state[i][j] === FILLED){
-                    coordinates.push({x: (j + _x), y: (i + _y)});
+                    const x = j + _x;
+                    const y = i + _y;
+                    //if piece is rotated at initial position (especially for I piece),
+                    // some cells can go to out of matrix
+                    if(x < 0 || y < 0){
+                        continue;
+                    }
+                    coordinates.push({x: x, y: y});
                 }
             }
         }
@@ -129,7 +143,8 @@ const Piece = ({x = 0, y = 0, color = randomColor(), state}) => {
         isOnSamePosition,
         matrixCoordinates,
         color: _color,
-        tetrominos
+        tetrominos,
+        moveInitCenter
     };
 }
 
